@@ -1,0 +1,114 @@
+1. `null` is also an object in Javascript, so it could accidentally treat it as an object.  You can avoid this pitfall by creating a check to make sure `bar` is not `null` before checking if it's an object.
+
+2. a defined? false
+   b defined? true
+
+This is because `a` is not defined outside of the function, and `b` is defined globally.
+
+3. outer func:  this.foo = bar
+   outer func:  self.foo = bar
+   inner func:  this.foo = undefined
+   inner func:  self.foo = bar
+
+`this` and `self` both refer to myObject in the outer function, and in the inner function, `this` refers to the global object, but `self` still refers to myObject.
+
+4. It helps to avoid name clashes by creating a private scope, preventing polluting the namespace.
+
+5. `use strict` enforces stricter parsing and throws exceptions on any errors it may find.  It has many benefits, such as decreasing any risks of using eval(), preventing unintentional globals, and makes overall debugging much easier.
+
+6. They will not.  The curly brace is not next to the `return` statement, so a semicolon is assumed after it.  Therefore, foo2() will return undefined.
+
+7. 0.30000000000000004
+   false
+
+8. 1, 4, 3, 2.  The synchronous code runs first, and then the event queue processes asynchronous callbacks.
+
+9. function palDrom(str){
+	str = str.replace(/\W/g, '').toLowerCase();
+	return (str == str.split('').reverse().join(''));
+   }
+
+10. function sum(x, y){
+	if (y !== undefined){
+		return x + y;
+	} else {
+		return function(y) { return x + y; };
+	}
+   }
+
+11. (a) The number 5 will be logged to the console, because the variable in the `for` loop is already 5. (b) A way you can fix this is to use `let i` instead of `var i`, or you could wrap the call in an event listener for the button.
+
+12. It iterates over the array, and for each `k` element, it sets d[k] = undefined.
+
+13. "array 1: length = 5 last=j,o,n,e,s"
+    "array 2: length = 5 last=j,o,n,e,s"
+
+arr1 and arr2 both reference the same array, and arr3 makes logs the last element as a string.
+
+14. "122", "32", "02", "112", "NaN2", "NaN".  This is due to type coercion where - and + are trying to convert strings into numbers.  This is why NaN appears in invalid operations.
+
+15. You can modify the nextListItem function to include a setTimeout function.
+
+16. A closure is a function that has access to the parent scope, even after the function is already done executing.  Here is an example:
+
+function exampleFunction(){
+	let variabl = 0;
+
+	return function(){
+		variabl += 1;
+		return variabl;
+	};
+}
+
+17. "0 || 1 = 1", "1 || 2 = 1", "0 && 1 = 0", and "1 && 2 = 2".
+
+18. "true" and "false".  This is `===` does not perform type coercion, whereas `==` does.
+
+19. The output will be "456" because a[b] and a[c] refer to the same key.
+
+20. It will output the factorial of 10, which is 3628800.
+
+21. The output will be 1, because x isn't defined in the inner function, so a defined variable x is searched in the outer function.
+
+22. "undefined" and "John Doe".  `stoleSecretIdentity` is being invoked in the global context, so the _name property does not exist.  You can bind getSecretIdentity to the `hero` object using ".bind()"
+
+23. function domFunc(elem, callback){
+    callback(elem);
+    let list = elem.children;
+    for (let i = 0; i < list.length; i++){
+		domFunc(list[i],callback);
+	}
+    }
+
+24. "10", and "2".
+
+25. "1", "undefined", and "2".  x remains as 1 both inside and outside of the catch block, while y is accessible only outside of the catch block, and has a value of 2.
+
+26. `undefined`.
+
+27. It will print "0 1 2 3 4".
+
+28. The first statement returns true, but the second one returns false, because it's being compared left to right, so it's translating to "true > 1".
+
+29. arrayExample = ['start', ...arrayExample, 'end'];
+
+30. (a) No. (b) It will output `undefined`.
+
+31. It will be evaluated to true.
+
+32. `string`.
+
+33. It will display 5, 5, 5, 5 and 5.
+
+34. NaN means "Not a Number".  Like it suggests, it represents a value that is not a number.  It is a `number` type.  You can use `.isNaN()` to test if a value is equal to NaN.
+
+35. It will output "3", because of variable hoisting, where b in the inner function is initialized to 3.
+
+36. The easiest way to go about this is to use `Number.isInteger()`, or you could use type checking and Math.floor().  You can also use type checking while using Number.isFinite().
+
+37.  Here is an example of cloning an object:
+
+var original = {a: 1, b: 2};
+var clone = Object.assign({}, original);
+
+You can also write the clone with just { ...original };.
